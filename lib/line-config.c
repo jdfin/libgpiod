@@ -550,3 +550,25 @@ int gpiod_line_config_to_uapi(struct gpiod_line_config *config,
 
 	return 0;
 }
+
+#include <stdio.h>
+
+GPIOD_API void
+gpiod_line_config_show(struct gpiod_line_config *config)
+{
+    unsigned int i;
+    struct settings_node *s;
+    for (i = 0; i < config->num_configs; i++)
+    {
+        printf("line_config.line_configs[%d].offset = %d\n", i, config->line_configs[i].offset);
+        printf("line_config.line_configs[%d].node = %p\n", i, config->line_configs[i].node);
+    }
+    printf("line_config.num_configs = %d\n", config->num_configs);
+    for (i = 0; i < config->num_output_values; i++)
+        printf("line_config.output_values[%d] = %d\n", i, config->output_values[i]);
+    printf("line_config.num_output_values = %d\n", config->num_output_values);
+    printf("line_config.settings_node =");
+    for (s = config->sref_list; s != NULL; s = s->next)
+        printf(" %p", s->settings);
+    printf("\n");
+}

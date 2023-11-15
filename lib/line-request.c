@@ -304,3 +304,16 @@ gpiod_line_request_read_edge_events(struct gpiod_line_request *request,
 
 	return gpiod_edge_event_buffer_read_fd(request->fd, buffer, max_events);
 }
+
+#include <stdio.h>
+
+GPIOD_API void
+gpiod_line_request_show(struct gpiod_line_request *request)
+{
+    int i;
+    printf("line_request.chip_name = \"%s\"\n", request->chip_name);
+    for (i = 0; i < request->num_lines; i++)
+        printf("line_request.offsets[%d] = %d\n", i, request->offsets[i]);
+    printf("line_request.num_lines = %d\n", request->num_lines);
+    printf("line_request.fd = %d\n", request->fd);
+}

@@ -250,3 +250,13 @@ gpiod_chip_request_lines(struct gpiod_chip *chip,
 
 	return request;
 }
+
+
+#include <stdio.h>
+
+GPIOD_API void
+gpiod_chip_show(struct gpiod_chip *chip)
+{
+    printf("chip.fd = %d\n", chip->fd);
+    printf("chip.path = \"%s\"\n", chip->path);
+}

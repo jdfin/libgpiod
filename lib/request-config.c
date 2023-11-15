@@ -77,3 +77,12 @@ void gpiod_request_config_to_uapi(struct gpiod_request_config *config,
 	strcpy(uapi_req->consumer, config->consumer);
 	uapi_req->event_buffer_size = config->event_buffer_size;
 }
+
+#include <stdio.h>
+
+GPIOD_API void
+gpiod_request_config_show(struct gpiod_request_config *config)
+{
+    printf("request_config.consumer = \"%s\"\n", config->consumer);
+    printf("request_config.event_buffer_size = %d\n", config->event_buffer_size);
+}

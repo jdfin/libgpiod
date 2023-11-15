@@ -16,6 +16,8 @@
 extern "C" {
 #endif
 
+#define GPIOD_INCLUDE_SHOW 1
+
 /**
  * @mainpage libgpiod public API
  *
@@ -286,6 +288,13 @@ struct gpiod_line_request *
 gpiod_chip_request_lines(struct gpiod_chip *chip,
 			 struct gpiod_request_config *req_cfg,
 			 struct gpiod_line_config *line_cfg);
+
+#if GPIOD_INCLUDE_SHOW
+
+void
+gpiod_chip_show(struct gpiod_chip *chip);
+
+#endif
 
 /**
  * @}
@@ -940,6 +949,13 @@ gpiod_line_config_get_configured_offsets(struct gpiod_line_config *config,
 					 unsigned int *offsets,
 					 size_t max_offsets);
 
+#if GPIOD_INCLUDE_SHOW
+
+void
+gpiod_line_config_show(struct gpiod_line_config *config);
+
+#endif
+
 /**
  * @}
  *
@@ -1005,6 +1021,13 @@ gpiod_request_config_set_event_buffer_size(struct gpiod_request_config *config,
  */
 size_t
 gpiod_request_config_get_event_buffer_size(struct gpiod_request_config *config);
+
+#if GPIOD_INCLUDE_SHOW
+
+void
+gpiod_request_config_show(struct gpiod_request_config *config);
+
+#endif
 
 /**
  * @}
@@ -1190,6 +1213,13 @@ int gpiod_line_request_wait_edge_events(struct gpiod_line_request *request,
 int gpiod_line_request_read_edge_events(struct gpiod_line_request *request,
 					struct gpiod_edge_event_buffer *buffer,
 					size_t max_events);
+
+#if GPIOD_INCLUDE_SHOW
+
+void
+gpiod_line_request_show(struct gpiod_line_request *request);
+
+#endif
 
 /**
  * @}
